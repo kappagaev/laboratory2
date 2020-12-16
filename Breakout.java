@@ -126,14 +126,39 @@ public class Breakout extends GraphicsProgram
 	{
 		setup();
 		while(true) {
-			gameSetup();
-			levelSetup(1);
-			play();
-			if(counter.levelPassed()) {
-				
+			while(true) {
+				gameSetup();
+				levelSetup(1);
+				play();
+				if(!counter.levelPassed()) {
+					break;
+				}
+				levelSetup(2);
+				play();
 			}
+			thanksForPlaing();
 		}
 
+	}
+	private void thanksForPlaing() {
+		if(counter.levelPassed()) {
+			congrats();
+		} else {
+			tryAgain();
+		}
+		
+	}
+	//sound 
+	private void tryAgain() 
+	{
+		
+		
+	}
+	//sound 
+	private void congrats() 
+	{
+		
+		
 	}
 	// забей
 	private void checkForCollisions() 
