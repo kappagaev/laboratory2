@@ -26,4 +26,9 @@ public class GameCounter
 		
 	}
 
+	public void increaseScore() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

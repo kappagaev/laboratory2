@@ -52,10 +52,10 @@ public class Breakout extends GraphicsProgram
 	  (WIDTH - (NBRICKS_PER_ROW - 1) * BRICK_SEP) / NBRICKS_PER_ROW;
 
 /** Height of a brick */
-	private static final int BRICK_HEIGHT = 30;
+	private static final int BRICK_HEIGHT = 10;
 
 /** Radius of the ball in pixels */
-	private static final int BALL_RADIUS = 10;
+	private static final int BALL_RADIUS = 5;
 
 /** Offset of the top brick row from the top */
 	private static final int BRICK_Y_OFFSET = 70;
@@ -63,7 +63,7 @@ public class Breakout extends GraphicsProgram
 /** Number of turns */
 	private static final int NTURNS = 3;
 	
-	private static final int DELAY = 10;
+	private static final int DELAY = 1;
 	 		
 	private GameCounter counter;
 	
@@ -91,7 +91,7 @@ public class Breakout extends GraphicsProgram
 		factory = new BrickFactory(this);
 		factory.createTable(
 					NBRICK_ROWS, NBRICKS_PER_ROW, BRICK_WIDTH, BRICK_HEIGHT, BRICK_SEP,
-					FRAME_WIDTH_OFFSET, FRAME_HEIGHT_OFFSET
+					FRAME_WIDTH_OFFSET, FRAME_HEIGHT_OFFSET + BRICK_HEIGHT*4
 				);
 		createPuddle();
 		createBall();
@@ -179,7 +179,7 @@ public class Breakout extends GraphicsProgram
 		
 		if (obj != null) {
 			if(obj != paddle) {
-				remove(obj);
+				removeBrick(obj);
 				ball.redirectY();
 				if(ball.getY() < obj.getY()) {
 					ball.redirectX();
@@ -195,6 +195,11 @@ public class Breakout extends GraphicsProgram
 		
 	}
 	
+	private void removeBrick(GObject obj) {
+		remove(obj);
+		counter.increaseScore();
+		
+	}
 	private void playSound() {
 		// TODO Auto-generated method stub
 		
